@@ -27,11 +27,9 @@ const furnitureOperations = {
     return this.furniture;
   },
 
-  async getById() {
+  async getById(id) {
     const furnitureItem = this.furniture.find((item) => item.id === id);
-    return furnitureItem
-      ? furnitureItem
-      : `Елемент з номером ${id} не знайдено`;
+    return furnitureItem ? furnitureItem : null;
   },
 
   async add(newData) {
@@ -47,7 +45,7 @@ const furnitureOperations = {
 
   async updateById(id, updateData) {
     const idx = this.furniture.findIndex((item) => item.id === id);
-    if (idx === -1) return `Елемент з номером ${id} не знайдено`;
+    if (idx === -1) return null;
     this.furniture[idx] = { ...updateData, id };
     await this.updateFurniture(this.furniture);
     return this.furniture[idx];
@@ -55,7 +53,7 @@ const furnitureOperations = {
 
   async removeById(id) {
     const idx = this.furniture.findIndex((item) => item.id === id);
-    if (idx === -1) return `Елемент з номером ${id} не знайдено`;
+    if (idx === -1) return null;
     const removeItem = this.furniture[idx];
     this.furniture.splice(idx, 1);
     await this.updateFurniture(this.furniture);
