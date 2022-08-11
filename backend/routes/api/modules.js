@@ -1,26 +1,36 @@
 const express = require("express");
 const Joi = require("joi");
 
-const furnitureOperations = require("../../model/furniture");
+const modulesOperations = require("../../model/modules");
 
-const joiFurnitureSchema = Joi.object({
-  name: Joi.string().min(1).required(),
-  a: Joi.number().min(100).required(),
-  b: Joi.number().min(100).required(),
-  c: Joi.number().min(100).required(),
-  price: Joi.number().min(0.01).required(),
+const joiModulesSchema = Joi.object({
+  projectName: Joi.string().min(1).required(),
+  category: Joi.string()
+    .valid("bottom modules", "top modules", "cupboards")
+    .required(),
+  mName: Joi.string().min(1).required(),
+  mWidth: Joi.number().min(100).required(),
+  mDepth: Joi.number().min(100).required(),
+  mHeight: Joi.number().min(100).required(),
+  mPrice: Joi.number().min(0.01).required(),
+  mQuantity: Joi.number().min(0).required(),
+  detaling: Joi.array().items(
+    Joi.object({
+      // joiModuleSchema
+    })
+  ),
 });
 
 const router = express.Router();
 
 router.get("/", async (req, res, next) => {
   try {
-    const furniture = await furnitureOperations.getAll();
+    const modules = await modulesOperations.getAll();
     res.status(200).json({
       status: "success",
       code: 200,
       data: {
-        result: furniture,
+        result: modules,
       },
     });
   } catch (error) {
@@ -31,10 +41,10 @@ router.get("/", async (req, res, next) => {
 router.get("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
-    const furnitureItem = await furnitureOperations.getById(id);
+    const module = await modulesOperations.getById(id);
 
-    if (!furnitureItem) {
-      const error = new Error(`Furniture item with id=${id} not found`);
+    if (!module) {
+      const error = new Error(`Module with id=${id} not found`);
       error.status = 404;
       throw error;
     }
@@ -43,7 +53,7 @@ router.get("/:id", async (req, res, next) => {
       status: "success",
       code: 200,
       data: {
-        result: furnitureItem,
+        result: module,
       },
     });
   } catch (error) {
@@ -53,13 +63,13 @@ router.get("/:id", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
   try {
-    const { error } = joiFurnitureSchema.validate(req.body);
+    const { error } = joiModulesSchema.validate(req.body);
     if (error) {
       const err = new Error(error.message);
       err.status = 400;
       throw err;
     }
-    const result = await furnitureOperations.add(req.body);
+    const result = await modulesOperations.add(req.body);
     res.status(201).json({
       status: "success",
       code: 201,
@@ -74,16 +84,16 @@ router.post("/", async (req, res, next) => {
 
 router.put("/:id", async (req, res, next) => {
   try {
-    const { error } = joiFurnitureSchema.validate(req.body);
+    const { error } = joiModulesSchema.validate(req.body);
     if (error) {
       const err = new Error(error.message);
       err.status = 400;
       throw err;
     }
     const { id } = req.params;
-    const result = await furnitureOperations.updateById(id, req.body);
+    const result = await modulesOperations.updateById(id, req.body);
     if (!result) {
-      const error = new Error(`Furniture item with id=${id} not found`);
+      const error = new Error(`Module with id=${id} not found`);
       error.status = 404;
       throw error;
     }
@@ -102,9 +112,9 @@ router.put("/:id", async (req, res, next) => {
 router.delete("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
-    const result = await furnitureOperations.removeById(id);
+    const result = await modulesOperations.removeById(id);
     if (!result) {
-      const error = new Error(`Furniture item with id=${id} not found`);
+      const error = new Error(`Module with id=${id} not found`);
       error.status = 404;
       throw error;
     }

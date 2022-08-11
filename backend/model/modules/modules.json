@@ -1,0 +1,50 @@
+[
+  {
+    "id": "1",
+    "projectName": "Кухня Данілов Є.О.",
+    "category": "bottom modules",
+    "mName": "Тумба під мийку",
+    "mWidth": 600,
+    "mDepth": 520,
+    "mHeight": 720,
+    "mPrice": 1000,
+    "mQuantity": 1,
+    "detaling": []
+  },
+  {
+    "id": "2",
+    "projectName": "Кухня Данілов Є.О.",
+    "category": "bottom modules",
+    "mName": "Тумба під посудомийку",
+    "mWidth": 450,
+    "mDepth": 520,
+    "mHeight": 720,
+    "mPrice": 777,
+    "mQuantity": 1,
+    "detaling": []
+  },
+  {
+    "id": "3",
+    "projectName": "Кухня Данілов Є.О.",
+    "category": "cupboards",
+    "mName": "Шафа під холодильник",
+    "mWidth": 600,
+    "mDepth": 520,
+    "mHeight": 2000,
+    "mPrice": 1500,
+    "mQuantity": 1,
+    "detaling": []
+  },
+  {
+    "projectName": "Кухня Данілов Є.О.",
+    "category": "cupboards",
+    "mName": "Шафа під духовку/мікрохвильовку",
+    "mWidth": 600,
+    "mDepth": 520,
+    "mHeight": 2000,
+    "mPrice": 1700,
+    "mQuantity": 1,
+    "detaling": [],
+    "id": "11c79335-6814-4c99-89e0-c41f1c028992"
+  }
+]

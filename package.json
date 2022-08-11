@@ -29,8 +29,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "dev": "nodemon backend/server.js",
-    "start-dev": "npm-run-all --parallel start-dev-api start-dev-ui",
+    "dev": "nodemon backend/bin/server.js",
+    "start-dev": "npm-run-all --parallel start dev",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

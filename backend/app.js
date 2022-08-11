@@ -2,11 +2,9 @@ const express = require("express");
 const logger = require("morgan");
 const cors = require("cors");
 
-const furnitureRouter = require("./routes/api/furniture");
+const modulesRouter = require("./routes/api/modules");
 
 const app = express();
-
-// const furniture = require("./furniture/furniture.json");
 
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 
@@ -14,15 +12,7 @@ app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/furniture", furnitureRouter);
-
-// app.get("/furniture", (req, res) => {
-//   res.json(furniture);
-// });
-
-// app.post("/furniture", (req, res) => {
-//   res.send({ status: "success" });
-// });
+app.use("/api/modules", modulesRouter);
 
 app.use((_, res) => {
   res.status(404).json({
