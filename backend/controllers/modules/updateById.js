@@ -22,26 +22,22 @@ const joiModulesSchema = Joi.object({
 });
 
 const updateById = async (req, res, next) => {
-  try {
-    const { error } = joiModulesSchema.validate(req.body);
-    if (error) {
-      throw new BadRequest(error.message);
-    }
-    const { id } = req.params;
-    const result = await modulesOperations.updateById(id, req.body);
-    if (!result) {
-      throw new NotFound(`Module with id=${id} not found`);
-    }
-    res.status(200).json({
-      status: "success",
-      code: 200,
-      data: {
-        result,
-      },
-    });
-  } catch (error) {
-    next(error);
+  const { error } = joiModulesSchema.validate(req.body);
+  if (error) {
+    throw new BadRequest(error.message);
   }
+  const { id } = req.params;
+  const result = await modulesOperations.updateById(id, req.body);
+  if (!result) {
+    throw new NotFound(`Module with id=${id} not found`);
+  }
+  res.status(200).json({
+    status: "success",
+    code: 200,
+    data: {
+      result,
+    },
+  });
 };
 
 module.exports = updateById;

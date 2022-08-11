@@ -22,22 +22,18 @@ const joiModulesSchema = Joi.object({
 });
 
 const add = async (req, res, next) => {
-  try {
-    const { error } = joiModulesSchema.validate(req.body);
-    if (error) {
-      throw new BadRequest(error.message);
-    }
-    const result = await modulesOperations.add(req.body);
-    res.status(201).json({
-      status: "success",
-      code: 201,
-      data: {
-        result,
-      },
-    });
-  } catch (error) {
-    next(error);
+  const { error } = joiModulesSchema.validate(req.body);
+  if (error) {
+    throw new BadRequest(error.message);
   }
+  const result = await modulesOperations.add(req.body);
+  res.status(201).json({
+    status: "success",
+    code: 201,
+    data: {
+      result,
+    },
+  });
 };
 
 module.exports = add;
