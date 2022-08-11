@@ -13,7 +13,7 @@ const joiModulesSchema = Joi.object({
   mQuantity: Joi.number().min(0).required(),
   detaling: Joi.array().items(
     Joi.object({
-      // joiModuleSchema
+      // joiDetailSchema
     })
   ),
 });
