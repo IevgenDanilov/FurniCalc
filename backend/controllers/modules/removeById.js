@@ -1,20 +1,14 @@
 const { NotFound } = require("http-errors");
+const { Module } = require("../../models");
+const { sendSuccessReq } = require("../../helpers");
 
-const modulesOperations = require("../../model/modules");
-
-const removeById = async (req, res, next) => {
+const removeById = async (req, res) => {
   const { id } = req.params;
-  const result = await modulesOperations.removeById(id);
+  const result = await Module.findByIdAndDelete(id);
   if (!result) {
     throw new NotFound(`Module with id=${id} not found`);
   }
-  res.json({
-    status: "success",
-    code: 200,
-    data: {
-      result,
-    },
-  });
+  sendSuccessReq(res, { result });
 };
 
 module.exports = removeById;

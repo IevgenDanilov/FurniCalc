@@ -1,14 +1,9 @@
-const modulesOperations = require("../../model/modules");
+const { Module } = require("../../models");
+const { sendSuccessReq } = require("../../helpers");
 
-const getAll = async (req, res, next) => {
-  const modules = await modulesOperations.getAll();
-  res.status(200).json({
-    status: "success",
-    code: 200,
-    data: {
-      result: modules,
-    },
-  });
+const getAll = async (req, res) => {
+  const result = await Module.find({});
+  sendSuccessReq(res, { result });
 };
 
 module.exports = getAll;

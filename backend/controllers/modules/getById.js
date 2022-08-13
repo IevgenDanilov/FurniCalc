@@ -1,21 +1,15 @@
 const { NotFound } = require("http-errors");
-const modulesOperations = require("../../model/modules");
+const { Module } = require("../../models");
+const { sendSuccessReq } = require("../../helpers");
 
-const getById = async (req, res, next) => {
+const getById = async (req, res) => {
   const { id } = req.params;
-  const module = await modulesOperations.getById(id);
-
-  if (!module) {
+  // const result = await Module.findOne({ _id: id });
+  const result = await Module.findById(id);
+  if (!result) {
     throw new NotFound(`Module with id=${id} not found`);
   }
-
-  res.status(200).json({
-    status: "success",
-    code: 200,
-    data: {
-      result: module,
-    },
-  });
+  sendSuccessReq(res, { result });
 };
 
 module.exports = getById;
