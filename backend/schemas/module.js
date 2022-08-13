@@ -3,7 +3,7 @@ const Joi = require("joi");
 const joiModulesSchema = Joi.object({
   projectName: Joi.string().min(1).required(),
   category: Joi.string()
-    .valid("bottom modules", "top modules", "cupboards")
+    .valid("Нижні модулі", "Верхні модулі", "Шафи")
     .required(),
   mName: Joi.string().min(1).required(),
   mWidth: Joi.number().min(100).required(),

@@ -1,18 +1,18 @@
 const express = require("express");
-const logger = require("morgan");
+// const logger = require("morgan");
 const cors = require("cors");
 
 const modulesRouter = require("./routes/api/modules");
 
 const app = express();
 
-const formatsLogger = app.get("env") === "development" ? "dev" : "short";
+// const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 
-app.use(logger(formatsLogger));
+// app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/modules", modulesRouter);
+app.use("/api/v1/modules", modulesRouter);
 
 app.use((_, res) => {
   res.status(404).json({
@@ -22,9 +22,13 @@ app.use((_, res) => {
   });
 });
 
-app.use((err, req, res, next) => {
+app.use((err, _, res, __) => {
   const { status = 500, message = "Server error" } = err;
-  res.status(status).json({ message });
+  res.status(status).json({
+    status: "error",
+    code: status,
+    message,
+  });
 });
 
 module.exports = app;
