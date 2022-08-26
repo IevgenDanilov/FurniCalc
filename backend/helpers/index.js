@@ -1,3 +1,7 @@
 const sendSuccessReq = require("./sendSuccessReq");
+const sendResponse = require("./sendResponse");
 
-module.exports = sendSuccessReq;
+module.exports = {
+  sendSuccessReq,
+  sendResponse,
+};
