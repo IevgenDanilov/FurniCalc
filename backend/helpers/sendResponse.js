@@ -11,6 +11,4 @@ const sendResponse = ({
   });
 };
 
-// sendResponse({ res, data, status: 400, statusMessage: "error" });
-
 module.exports = sendResponse;

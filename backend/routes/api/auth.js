@@ -2,7 +2,7 @@ const express = require("express");
 
 const { auth: ctrl } = require("../../controllers");
 const { controllerWrapper, validation } = require("../../middlewares");
-// const { joiModuleSchema } = require("../../models/module");
+const { joiSchema } = require("../../models/user");
 
 const router = express.Router();
 
@@ -10,15 +10,20 @@ const router = express.Router();
 
 // router.get("/:id", controllerWrapper(ctrl.getById));
 
-// router.post("/", validation(joiModuleSchema), controllerWrapper(ctrl.add));
+// router.post("/", validation(joiSchema), controllerWrapper(ctrl.add));
 
-router.post("/register", controllerWrapper(ctrl.register));
-// router.post("/login", controllerWrapper(ctrl.login));
+router.post(
+  "/register",
+  validation(joiSchema),
+  controllerWrapper(ctrl.register)
+);
+
+// router.post("/login", validation(joiSchema), controllerWrapper(ctrl.login));
 // router.get("/logout", controllerWrapper(ctrl.logout));
 
 // router.put(
 //   "/:id",
-//   validation(joiModuleSchema),
+//   validation(joiSchema),
 //   controllerWrapper(ctrl.updateById)
 // );
 
