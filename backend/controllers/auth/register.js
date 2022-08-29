@@ -1,8 +1,9 @@
+// const bcrypt = require("bcryptjs");
 const { User } = require("../../models");
 const { sendResponse } = require("../../helpers");
 
 const register = async (req, res) => {
-  const { email } = req.body;
+  const { email, password } = req.body;
   const result = await User.findOne({ email });
   if (result) {
     sendResponse({
@@ -14,7 +15,15 @@ const register = async (req, res) => {
     return;
   }
 
-  await User.create(req.body);
+  // const newUser = {
+  //   ...req.body,
+  //   password: bcrypt.hashSync(password, bcrypt.genSaltSync(10)),
+  // };
+  // await User.create(newUser);
+
+  const newUser = new User(req.body);
+  newUser.setPassword(password);
+  await newUser.save();
 
   sendResponse({
     res,
