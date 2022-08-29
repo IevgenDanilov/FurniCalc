@@ -19,6 +19,10 @@ const userSchema = Schema(
       required: [true, "Вкажіть пароль, не менше 6 символів"],
       minlength: 6,
     },
+    token: {
+      type: String,
+      default: null,
+    },
   },
   { versionKey: false, timestamps: true }
 );
