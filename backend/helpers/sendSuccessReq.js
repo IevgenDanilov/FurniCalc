@@ -6,4 +6,4 @@ const sendSuccessReq = (res, data, status = 200) => {
   });
 };
 
-module.exports = { sendSuccessReq };
+module.exports = sendSuccessReq;

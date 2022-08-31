@@ -17,7 +17,27 @@ p {
   }
 }
 
+.module-input {
+  width: 100px;
+}
+
+.description {
+  max-width: 600px;
+}
+
+.special {
+  font-size: 16px;
+  max-width: 200px;
+  position: absolute;
+  right: 100px;
+  color: tomato;
+  rotate: 10deg;
+}
+
 .App-header {
+  font-family: cursive;
+  font-style: italic;
+  font-size: 16px;
   background-color: #282c34;
   min-height: 10vh;
   display: flex;
@@ -33,6 +53,11 @@ p {
 .App-link {
   color: #61dafb;
   text-decoration: none;
+  font-size: 16px;
+  max-width: 200px;
+  position: absolute;
+  left: 100px;
+  rotate: -10deg;
 }
 
 @keyframes App-logo-spin {

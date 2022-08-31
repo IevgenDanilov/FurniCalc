@@ -1,7 +1,9 @@
-const modules = require("./modules");
 const auth = require("./auth");
+const modules = require("./modules");
+const projects = require("./projects");
 
 module.exports = {
-  modules,
   auth,
+  modules,
+  projects,
 };
