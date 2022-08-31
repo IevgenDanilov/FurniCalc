@@ -4,7 +4,6 @@ const { sendSuccessReq } = require("../../helpers");
 
 const getById = async (req, res) => {
   const { id } = req.params;
-  // const result = await Module.findOne({ _id: id });
   const result = await Module.findById(id);
   if (!result) {
     throw new NotFound(`Module with id=${id} not found`);

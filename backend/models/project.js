@@ -19,7 +19,6 @@ const projectSchema = Schema(
 
 const joiProjectSchema = Joi.object({
   name: Joi.string().min(2).required(),
-  // owner: Joi.string(),
 });
 
 const Project = model("project", projectSchema);
