@@ -1,9 +1,9 @@
-const Button = (onClick) => {
-  return (
-    <>
-      <button onClick={() => onClick()}>+</button>
-    </>
-  );
-};
+// const Button = (onClick) => {
+//   return (
+//     <>
+//       <button onClick={() => onClick()}>+</button>
+//     </>
+//   );
+// };
 
-export default Button;
+// export default Button;
